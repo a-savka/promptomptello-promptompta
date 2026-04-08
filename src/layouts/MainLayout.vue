@@ -61,14 +61,26 @@
           </q-item>
   
           <!-- Templates -->
-  
+
           <q-item clickable v-ripple to="/templates">
             <q-item-section avatar>
               <q-icon name="view_quilt" />
             </q-item-section>
-  
+
             <q-item-section>
               <q-item-label>Шаблоны</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <!-- Template Search -->
+
+          <q-item clickable v-ripple to="/template-search">
+            <q-item-section avatar>
+              <q-icon name="search" />
+            </q-item-section>
+
+            <q-item-section>
+              <q-item-label>Поиск шаблона</q-item-label>
             </q-item-section>
           </q-item>
   

@@ -1,6 +1,7 @@
+import type { Ref } from 'vue';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query';
 import { templatesApi } from 'src/services/templates.api';
-import type { PromptTemplate, PromptTemplateCreateDto, PromptTemplateUpdateDto } from 'src/types/prompt-template';
+import type { PromptTemplateCreateDto, PromptTemplateUpdateDto } from 'src/types/prompt-template';
 
 export function useTemplatesQuery() {
     return useQuery({
@@ -49,5 +50,21 @@ export function useDeleteTemplateMutation() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['templates'] });
         }
+    });
+}
+
+export function useSearchTemplatesQuery(query: Ref<string>) {
+    return useQuery({
+        queryKey: ['templates', 'search', query],
+        queryFn: () => templatesApi.search(query.value),
+        enabled: () => query.value.length >= 3
+    });
+}
+
+export function useSuggestTemplatesQuery(query: Ref<string>) {
+    return useQuery({
+        queryKey: ['templates', 'suggest', query],
+        queryFn: () => templatesApi.suggest(query.value),
+        enabled: () => query.value.length >= 3
     });
 }

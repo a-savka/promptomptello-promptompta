@@ -72,6 +72,18 @@ const routes: RouteRecordRaw[] = [
           component: () => import('pages/templates/TemplateFormPage.vue'),
           props: true
         },
+
+        {
+          path: 'template-search',
+          name: 'template-search',
+          component: () => import('pages/templates/TemplateSearchPage.vue')
+        },
+
+        {
+          path: 'template-search/results',
+          name: 'search-results',
+          component: () => import('pages/templates/TemplateSearchResultsPage.vue')
+        },
   
         // ===== База знаний =====
   

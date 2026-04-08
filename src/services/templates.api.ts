@@ -72,5 +72,23 @@ export const templatesApi = {
             throw new Error(`Template with id ${id} not found`);
         }
         templates.splice(index, 1);
+    },
+
+    async search(query: string): Promise<PromptTemplate[]> {
+        await delay(MOCK_DELAY);
+        const q = query.toLowerCase();
+        return templates.filter(t =>
+            t.name.toLowerCase().includes(q) ||
+            t.category.toLowerCase().includes(q) ||
+            t.promptText.toLowerCase().includes(q)
+        );
+    },
+
+    async suggest(query: string): Promise<PromptTemplate[]> {
+        await delay(200);
+        const q = query.toLowerCase();
+        return templates.filter(t =>
+            t.name.toLowerCase().includes(q)
+        ).slice(0, 5);
     }
 };
