@@ -53,11 +53,24 @@ const routes: RouteRecordRaw[] = [
         },
   
         // ===== Шаблоны =====
-  
+
         {
           path: 'templates',
           name: 'templates',
           component: () => import('pages/templates/TemplatesPage.vue')
+        },
+
+        {
+          path: 'templates/new',
+          name: 'template-new',
+          component: () => import('pages/templates/TemplateFormPage.vue')
+        },
+
+        {
+          path: 'templates/:id/edit',
+          name: 'template-edit',
+          component: () => import('pages/templates/TemplateFormPage.vue'),
+          props: true
         },
   
         // ===== База знаний =====
