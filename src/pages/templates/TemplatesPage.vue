@@ -1,8 +1,13 @@
 <template>
   <q-page class="q-pa-md">
     <div class="row justify-between items-center q-mb-md">
-      <div class="text-h5">Шаблоны</div>
-      <q-btn color="primary" label="Добавить" icon="add" :to="{ name: 'template-new' }" />
+      <h1 class="text-h5 q-my-none">Шаблоны</h1>
+      <q-btn
+        color="primary"
+        label="Добавить шаблон"
+        icon="add"
+        :to="{ name: 'template-new' }"
+      />
     </div>
 
     <q-table
@@ -12,6 +17,8 @@
       :loading="isLoading"
       flat
       bordered
+      aria-label="Список шаблонов промптов"
+      :aria-busy="isLoading ? 'true' : undefined"
     >
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
@@ -21,6 +28,7 @@
             color="primary"
             icon="edit"
             label="Редактировать"
+            :aria-label="'Редактировать шаблон: ' + props.row.name"
             :to="{ name: 'template-edit', params: { id: props.row.id } }"
           />
           <q-btn
@@ -29,6 +37,7 @@
             color="negative"
             icon="delete"
             label="Удалить"
+            :aria-label="'Удалить шаблон: ' + props.row.name"
             @click="confirmDelete(props.row)"
           />
         </q-td>
@@ -38,11 +47,21 @@
         <q-inner-loading showing color="primary" />
       </template>
     </q-table>
+
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    >
+      <template v-if="isLoading">Загрузка шаблонов</template>
+      <template v-else-if="templates?.length">
+        Загружено {{ templates.length }} шаблонов
+      </template>
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 import type { QTableColumn } from 'quasar';

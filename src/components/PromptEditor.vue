@@ -21,6 +21,7 @@
         @scroll="onScroll"
         @focus="isFocused = true"
         @blur="isFocused = false"
+        :aria-labelledby="ariaLabelledby || undefined"
         @keydown="onKeydown"
       />
     </div>
@@ -37,12 +38,14 @@ const props = withDefaults(defineProps<{
   disabled?: boolean
   readonly?: boolean
   rows?: number
+  ariaLabelledby?: string
 }>(), {
   modelValue: '',
   placeholder: '',
   disabled: false,
   readonly: false,
   rows: 10,
+  ariaLabelledby: '',
 })
 
 const emit = defineEmits<{
@@ -196,7 +199,7 @@ defineExpose({ focus })
   }
 
   .token-separator {
-    color: #999;
+    color: #757575;
   }
 
   .token-arrow {

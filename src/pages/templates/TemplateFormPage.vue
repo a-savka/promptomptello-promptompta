@@ -1,17 +1,15 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="text-h5 q-mb-md">
+    <h1 class="text-h5 q-mb-md">
       {{ isEdit ? 'Редактирование шаблона' : 'Добавление шаблона' }}
-    </div>
+    </h1>
 
-    <br />
-    <br />
-
-    <q-form @submit="onSubmit" class="q-gutter-md" style="max-width: 600px">
+    <q-form @submit="onSubmit" class="q-gutter-md" style="max-width: 600px" aria-label="Форма шаблона промпта">
       <q-input
         v-model="form.name"
         label="Название"
         outlined
+        aria-required="true"
         :rules="[val => !!val || 'Название обязательно']"
       />
 
@@ -22,14 +20,16 @@
         outlined
         emit-value
         map-options
+        aria-required="true"
         :rules="[val => !!val || 'Категория обязательна']"
       />
 
-      <div class="text-subtitle2 q-mb-sm">Текст промпта</div>
+      <div class="text-subtitle2 q-mb-sm" id="prompt-text-label">Текст промпта</div>
       <PromptEditor
         v-model="form.promptText"
         placeholder="Введите текст промпта..."
         :rows="10"
+        aria-labelledby="prompt-text-label"
       />
 
       <div class="row q-gutter-sm">
@@ -38,14 +38,25 @@
           color="primary"
           :label="isEdit ? 'Сохранить' : 'Создать'"
           :loading="isSaving"
+          :aria-label="isEdit ? 'Сохранить изменения шаблона' : 'Создать новый шаблон'"
         />
         <q-btn
           color="grey"
           label="Отмена"
+          :aria-label="'Вернуться к списку шаблонов'"
           :to="{ name: 'templates' }"
         />
       </div>
     </q-form>
+
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="sr-only"
+    >
+      <template v-if="isSaving">Сохранение шаблона</template>
+      <template v-else-if="isLoadingTemplate">Загрузка данных шаблона</template>
+    </div>
   </q-page>
 </template>
 
@@ -99,6 +110,10 @@ const isSaving = computed(() => createMutation.isPending.value || updateMutation
 
 async function onSubmit() {
   if (!form.value.name || !form.value.category || !form.value.promptText) {
+    $q.notify({
+      type: 'warning',
+      message: 'Заполните все поля'
+    });
     return;
   }
 
