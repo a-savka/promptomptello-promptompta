@@ -30,13 +30,13 @@
         role="navigation"
         aria-label="Основное меню"
       >
-        <q-list padding>
+        <q-list padding role="none">
 
           <q-item-label header>
             Навигация
           </q-item-label>
 
-          <q-item clickable v-ripple to="/" exact :aria-current="isActive('/')">
+          <q-item clickable v-ripple to="/" exact :aria-current="isActive('/')" role="link">
             <q-item-section avatar>
               <q-icon name="home" aria-hidden="true" />
             </q-item-section>
@@ -45,7 +45,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/prompts">
+          <q-item clickable v-ripple to="/prompts" role="link">
             <q-item-section avatar>
               <q-icon name="travel_explore" aria-hidden="true" />
             </q-item-section>
@@ -54,7 +54,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/templates">
+          <q-item clickable v-ripple to="/templates" role="link">
             <q-item-section avatar>
               <q-icon name="view_quilt" aria-hidden="true" />
             </q-item-section>
@@ -63,7 +63,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/template-search">
+          <q-item clickable v-ripple to="/template-search" role="link">
             <q-item-section avatar>
               <q-icon name="search" aria-hidden="true" />
             </q-item-section>
@@ -72,7 +72,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/editor">
+          <q-item clickable v-ripple to="/editor" role="link">
             <q-item-section avatar>
               <q-icon name="edit_note" aria-hidden="true" />
             </q-item-section>
@@ -83,7 +83,7 @@
 
           <q-separator spaced />
 
-          <q-item clickable v-ripple to="/knowledge">
+          <q-item clickable v-ripple to="/knowledge" role="link">
             <q-item-section avatar>
               <q-icon name="school" aria-hidden="true" />
             </q-item-section>
@@ -92,7 +92,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/research">
+          <q-item clickable v-ripple to="/research" role="link">
             <q-item-section avatar>
               <q-icon name="science" aria-hidden="true" />
             </q-item-section>
@@ -107,7 +107,7 @@
             Личный кабинет
           </q-item-label>
 
-          <q-item clickable v-ripple to="/profile">
+          <q-item clickable v-ripple to="/profile" role="link">
             <q-item-section avatar>
               <q-icon name="person" aria-hidden="true" />
             </q-item-section>
@@ -116,7 +116,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/profile/favorites">
+          <q-item clickable v-ripple to="/profile/favorites" role="link">
             <q-item-section avatar>
               <q-icon name="favorite" aria-hidden="true" />
             </q-item-section>
@@ -125,7 +125,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/profile/my-templates">
+          <q-item clickable v-ripple to="/profile/my-templates" role="link">
             <q-item-section avatar>
               <q-icon name="folder" aria-hidden="true" />
             </q-item-section>
@@ -134,7 +134,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/profile/settings">
+          <q-item clickable v-ripple to="/profile/settings" role="link">
             <q-item-section avatar>
               <q-icon name="settings" aria-hidden="true" />
             </q-item-section>
