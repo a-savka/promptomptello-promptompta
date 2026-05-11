@@ -25,13 +25,11 @@
         :rules="[val => !!val || 'Категория обязательна']"
       />
 
-      <q-input
+      <div class="text-subtitle2 q-mb-sm">Текст промпта</div>
+      <PromptEditor
         v-model="form.promptText"
-        label="Текст промпта"
-        type="textarea"
-        outlined
-        rows="8"
-        :rules="[val => !!val || 'Текст промпта обязателен']"
+        placeholder="Введите текст промпта..."
+        :rows="10"
       />
 
       <div class="row q-gutter-sm">
@@ -58,6 +56,7 @@ import { useQuasar } from 'quasar';
 import { TEMPLATE_CATEGORIES } from 'src/constants/template-categories';
 import { useTemplateQuery, useCreateTemplateMutation, useUpdateTemplateMutation } from 'src/services/templates.hooks';
 import type { PromptTemplateUpdateDto } from 'src/types/prompt-template';
+import PromptEditor from 'src/components/PromptEditor.vue';
 
 const route = useRoute();
 const router = useRouter();
